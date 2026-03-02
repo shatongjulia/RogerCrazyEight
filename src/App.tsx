@@ -10,7 +10,7 @@ export default function App() {
   const isPlayerTurn = state.turn === 'player' && state.status === 'playing';
 
   return (
-    <div className="min-h-screen bg-[#1a472a] text-white font-sans overflow-hidden selection:bg-yellow-400 selection:text-black">
+    <div className="min-h-screen bg-[#1a472a] text-white font-sans selection:bg-yellow-400 selection:text-black flex flex-col">
       {/* Header */}
       <header className="p-4 flex justify-between items-center border-b border-white/10 bg-black/20 backdrop-blur-md sticky top-0 z-50">
         <div className="flex items-center gap-3">
@@ -34,7 +34,7 @@ export default function App() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto p-4 flex flex-col gap-8 h-[calc(100vh-72px)]">
+      <main className="max-w-6xl mx-auto p-4 flex flex-col gap-6 flex-1 w-full overflow-y-auto pb-24 sm:pb-4">
         {state.status === 'idle' ? (
           <div className="flex-1 flex flex-col items-center justify-center gap-6">
             <motion.div
@@ -136,16 +136,18 @@ export default function App() {
                 <span className="text-xs font-bold uppercase tracking-widest">你</span>
                 <span className="text-xs bg-yellow-500 text-black px-2 rounded-full font-bold">{state.playerHand.length} 张牌</span>
               </div>
-              <div className="flex flex-wrap justify-center -space-x-8 sm:-space-x-12 pb-8 px-4 max-w-full">
-                {state.playerHand.map((card) => (
-                  <Card
-                    key={card.id}
-                    card={card}
-                    isFaceUp={true}
-                    isPlayable={isPlayerTurn && isValidMove(card)}
-                    onClick={() => playCard(card)}
-                  />
-                ))}
+              <div className="w-full overflow-x-auto pb-4 px-4 no-scrollbar">
+                <div className="flex justify-center min-w-max -space-x-10 sm:-space-x-12 px-8">
+                  {state.playerHand.map((card) => (
+                    <Card
+                      key={card.id}
+                      card={card}
+                      isFaceUp={true}
+                      isPlayable={isPlayerTurn && isValidMove(card)}
+                      onClick={() => playCard(card)}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </>

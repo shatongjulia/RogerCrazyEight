@@ -40,11 +40,11 @@ export const Card: React.FC<CardProps> = ({ card, isFaceUp, onClick, isPlayable,
           </div>
         </div>
       ) : (
-        <div className="w-full h-full overflow-hidden rounded-lg">
+        <div className="w-full h-full overflow-hidden rounded-lg bg-emerald-900">
           <img 
-            src="https://images.unsplash.com/photo-1545165375-1b744b9ed444?auto=format&fit=crop&w=300&q=80" 
+            src={`https://picsum.photos/seed/tropical-plant-${card.id}/300/450`} 
             alt="Tropical Plant Card Back"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover opacity-90"
             referrerPolicy="no-referrer"
           />
         </div>
