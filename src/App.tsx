@@ -136,7 +136,7 @@ export default function App() {
                 <span className="text-xs font-bold uppercase tracking-widest">你</span>
                 <span className="text-xs bg-yellow-500 text-black px-2 rounded-full font-bold">{state.playerHand.length} 张牌</span>
               </div>
-              <div className="w-full overflow-x-auto pb-4 px-4 no-scrollbar">
+              <div className="w-full overflow-x-auto pt-10 pb-4 px-4 no-scrollbar">
                 <div className="flex justify-center min-w-max -space-x-10 sm:-space-x-12 px-8">
                   {state.playerHand.map((card) => (
                     <Card

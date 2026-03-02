@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { CardData, SUIT_SYMBOLS, SUIT_COLORS } from '../types';
+import { TROPICAL_PLANT_IMAGES, getCardImageIndex } from '../assets';
 
 interface CardProps {
   card: CardData;
@@ -11,17 +12,20 @@ interface CardProps {
 }
 
 export const Card: React.FC<CardProps> = ({ card, isFaceUp, onClick, isPlayable, className }) => {
+  const imageIndex = getCardImageIndex(card.id || 'default');
+  const imageId = TROPICAL_PLANT_IMAGES[imageIndex];
+
   return (
     <motion.div
       layout
       initial={{ scale: 0.8, opacity: 0, y: 20 }}
       animate={{ scale: 1, opacity: 1, y: 0 }}
-      whileHover={isPlayable ? { y: -10, scale: 1.05 } : {}}
+      whileHover={isPlayable ? { y: -20, scale: 1.1 } : {}}
       onClick={isPlayable ? onClick : undefined}
       className={`
-        relative w-20 h-28 sm:w-24 sm:h-36 rounded-lg border-2 shadow-lg cursor-pointer select-none
-        ${isFaceUp ? 'bg-white border-slate-200' : 'bg-indigo-800 border-indigo-900'}
-        ${isPlayable ? 'ring-4 ring-yellow-400 ring-offset-2' : ''}
+        relative w-20 h-28 sm:w-24 sm:h-36 rounded-lg border-2 shadow-lg cursor-pointer select-none transition-shadow
+        ${isFaceUp ? 'bg-white border-slate-200' : 'bg-emerald-900 border-emerald-950'}
+        ${isPlayable ? 'ring-4 ring-yellow-400 ring-offset-2 shadow-yellow-400/50' : ''}
         ${className}
       `}
     >
@@ -42,7 +46,7 @@ export const Card: React.FC<CardProps> = ({ card, isFaceUp, onClick, isPlayable,
       ) : (
         <div className="w-full h-full overflow-hidden rounded-lg bg-emerald-900">
           <img 
-            src={`https://picsum.photos/seed/tropical-plant-${card.id}/300/450`} 
+            src={`https://images.unsplash.com/photo-${imageId}?auto=format&fit=crop&w=300&q=80`} 
             alt="Tropical Plant Card Back"
             className="w-full h-full object-cover opacity-90"
             referrerPolicy="no-referrer"
