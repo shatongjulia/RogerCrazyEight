@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { CardData, SUIT_SYMBOLS, SUIT_COLORS } from '../types';
-import { TROPICAL_PLANT_IMAGES, getCardImageIndex } from '../assets';
+import { getCardBackUrl } from '../assets';
 
 interface CardProps {
   card: CardData;
@@ -12,8 +12,7 @@ interface CardProps {
 }
 
 export const Card: React.FC<CardProps> = ({ card, isFaceUp, onClick, isPlayable, className }) => {
-  const imageIndex = getCardImageIndex(card.id || 'default');
-  const imageId = TROPICAL_PLANT_IMAGES[imageIndex];
+  const cardBackUrl = getCardBackUrl(card.id || 'default');
 
   return (
     <motion.div
@@ -46,7 +45,7 @@ export const Card: React.FC<CardProps> = ({ card, isFaceUp, onClick, isPlayable,
       ) : (
         <div className="w-full h-full overflow-hidden rounded-lg bg-emerald-900">
           <img 
-            src={`https://images.unsplash.com/photo-${imageId}?auto=format&fit=crop&w=300&q=80`} 
+            src={cardBackUrl} 
             alt="Tropical Plant Card Back"
             className="w-full h-full object-cover opacity-90"
             referrerPolicy="no-referrer"
