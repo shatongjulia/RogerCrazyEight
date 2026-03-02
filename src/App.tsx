@@ -15,13 +15,13 @@ export default function App() {
       <header className="p-4 flex justify-between items-center border-b border-white/10 bg-black/20 backdrop-blur-md sticky top-0 z-50">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center text-black font-bold shadow-lg">
-            T
+            J
           </div>
-          <h1 className="text-xl font-bold tracking-tight">Tina Crazy Eights</h1>
+          <h1 className="text-xl font-bold tracking-tight">Julia Crazy Eights</h1>
         </div>
         <div className="flex items-center gap-4">
           <div className="hidden sm:flex flex-col items-end">
-            <span className="text-[10px] uppercase tracking-widest opacity-50 font-bold">Current Action</span>
+            <span className="text-[10px] uppercase tracking-widest opacity-50 font-bold">当前状态</span>
             <span className="text-sm font-medium text-yellow-400">{state.lastAction}</span>
           </div>
           <button
@@ -42,15 +42,15 @@ export default function App() {
               animate={{ scale: 1, opacity: 1 }}
               className="text-center"
             >
-              <h2 className="text-5xl font-black mb-4 tracking-tighter">CRAZY EIGHTS</h2>
+              <h2 className="text-5xl font-black mb-4 tracking-tighter">疯狂 8 点</h2>
               <p className="text-white/60 max-w-md mx-auto mb-8">
-                The classic card game where 8s are wild. Outsmart Tina and empty your hand first!
+                经典的扑克牌游戏，数字 8 是万能牌。清空你的手牌，打败 Julia！
               </p>
               <button
                 onClick={startNewGame}
                 className="px-12 py-4 bg-yellow-400 text-black font-bold rounded-full hover:scale-105 transition-transform shadow-2xl"
               >
-                START GAME
+                开始游戏
               </button>
             </motion.div>
           </div>
@@ -60,8 +60,8 @@ export default function App() {
             <div className="flex flex-col items-center gap-4">
               <div className="flex items-center gap-2 px-3 py-1 bg-black/30 rounded-full border border-white/10">
                 <User size={14} className="text-indigo-400" />
-                <span className="text-xs font-bold uppercase tracking-widest">Tina</span>
-                <span className="text-xs bg-indigo-500 px-2 rounded-full">{state.aiHand.length} cards</span>
+                <span className="text-xs font-bold uppercase tracking-widest">Julia</span>
+                <span className="text-xs bg-indigo-500 px-2 rounded-full">{state.aiHand.length} 张牌</span>
               </div>
               <div className="flex -space-x-12 sm:-space-x-16 overflow-visible py-4">
                 {state.aiHand.map((card, i) => (
@@ -98,7 +98,7 @@ export default function App() {
                   )}
                 </div>
                 <span className="text-[10px] uppercase tracking-widest font-bold opacity-40 flex items-center gap-1">
-                  <Layers size={10} /> Draw Pile
+                  <Layers size={10} /> 摸牌堆
                 </span>
               </div>
 
@@ -124,7 +124,7 @@ export default function App() {
                   )}
                 </div>
                 <span className="text-[10px] uppercase tracking-widest font-bold opacity-40 flex items-center gap-1">
-                  Discard
+                  弃牌堆
                 </span>
               </div>
             </div>
@@ -133,8 +133,8 @@ export default function App() {
             <div className="flex flex-col items-center gap-4 mt-auto">
               <div className="flex items-center gap-2 px-3 py-1 bg-black/30 rounded-full border border-white/10">
                 <User size={14} className="text-yellow-400" />
-                <span className="text-xs font-bold uppercase tracking-widest">You</span>
-                <span className="text-xs bg-yellow-500 text-black px-2 rounded-full font-bold">{state.playerHand.length} cards</span>
+                <span className="text-xs font-bold uppercase tracking-widest">你</span>
+                <span className="text-xs bg-yellow-500 text-black px-2 rounded-full font-bold">{state.playerHand.length} 张牌</span>
               </div>
               <div className="flex flex-wrap justify-center -space-x-8 sm:-space-x-12 pb-8 px-4 max-w-full">
                 {state.playerHand.map((card) => (
@@ -166,8 +166,8 @@ export default function App() {
               animate={{ scale: 1, y: 0 }}
               className="bg-slate-900 p-8 rounded-3xl border border-white/10 shadow-2xl max-w-sm w-full text-center"
             >
-              <h3 className="text-2xl font-bold mb-2">Wild 8!</h3>
-              <p className="text-white/60 mb-8 text-sm">Choose the next suit to play.</p>
+              <h3 className="text-2xl font-bold mb-2">万能 8 点！</h3>
+              <p className="text-white/60 mb-8 text-sm">请选择接下来的花色。</p>
               <div className="grid grid-cols-2 gap-4">
                 {SUITS.map((suit) => (
                   <button
@@ -207,18 +207,18 @@ export default function App() {
                 {state.winner === 'player' ? <Trophy size={40} /> : <HandIcon size={40} />}
               </div>
               <h2 className="text-4xl font-black mb-2 tracking-tight">
-                {state.winner === 'player' ? 'VICTORY!' : 'DEFEAT!'}
+                {state.winner === 'player' ? '获得胜利！' : '遗憾落败！'}
               </h2>
               <p className="text-white/60 mb-10">
                 {state.winner === 'player' 
-                  ? "You've outplayed Tina! She's impressed by your skills." 
-                  : "Tina was too fast this time. Don't let her win again!"}
+                  ? "你打败了 Julia！你的牌技令她印象深刻。" 
+                  : "Julia 这次更快。别让她再次赢过你！"}
               </p>
               <button
                 onClick={startNewGame}
                 className="w-full py-4 bg-yellow-400 text-black font-bold rounded-xl hover:scale-105 transition-transform shadow-lg flex items-center justify-center gap-2"
               >
-                <RotateCcw size={18} /> PLAY AGAIN
+                <RotateCcw size={18} /> 再次挑战
               </button>
             </motion.div>
           </motion.div>
@@ -228,7 +228,7 @@ export default function App() {
       {/* Mobile Action Bar */}
       <div className="sm:hidden fixed bottom-0 left-0 right-0 p-4 bg-black/40 backdrop-blur-md border-t border-white/10 flex justify-between items-center z-40">
         <div className="flex flex-col">
-          <span className="text-[8px] uppercase tracking-widest opacity-50 font-bold">Status</span>
+          <span className="text-[8px] uppercase tracking-widest opacity-50 font-bold">状态</span>
           <span className="text-xs font-medium text-yellow-400 truncate max-w-[200px]">{state.lastAction}</span>
         </div>
         {isPlayerTurn && (
@@ -238,7 +238,7 @@ export default function App() {
               disabled={state.deck.length === 0}
               className="px-4 py-2 bg-indigo-600 rounded-lg text-xs font-bold disabled:opacity-50"
             >
-              DRAW
+              摸牌
             </button>
           </div>
         )}

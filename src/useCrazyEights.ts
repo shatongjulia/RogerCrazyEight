@@ -30,7 +30,7 @@ export const useCrazyEights = () => {
     turn: 'player',
     status: 'idle',
     winner: null,
-    lastAction: 'Welcome to Tina Crazy Eights!',
+    lastAction: '欢迎来到 Julia 疯狂 8 点！',
   });
 
   const startNewGame = useCallback(() => {
@@ -52,7 +52,7 @@ export const useCrazyEights = () => {
       turn: 'player',
       status: 'playing',
       winner: null,
-      lastAction: 'Game started! Your turn.',
+      lastAction: '游戏开始！轮到你了。',
     });
   }, []);
 
@@ -85,6 +85,13 @@ export const useCrazyEights = () => {
 
       const winner = newHand.length === 0 ? (isPlayer ? 'player' : 'ai') : null;
 
+      const suitNames: Record<Suit, string> = {
+        hearts: '红心',
+        diamonds: '方块',
+        clubs: '梅花',
+        spades: '黑桃'
+      };
+
       return {
         ...prev,
         playerHand: isPlayer ? newHand : prev.playerHand,
@@ -94,18 +101,24 @@ export const useCrazyEights = () => {
         status: winner ? 'game_over' : nextStatus,
         winner,
         turn: winner ? prev.turn : (card.rank === '8' && isPlayer ? 'player' : (isPlayer ? 'ai' : 'player')),
-        lastAction: `${isPlayer ? 'You' : 'Tina'} played ${card.rank} of ${card.suit}.`,
+        lastAction: `${isPlayer ? '你' : 'Julia'} 打出了 ${suitNames[card.suit]} ${card.rank}。`,
       };
     });
   }, []);
 
   const chooseSuit = useCallback((suit: Suit) => {
+    const suitNames: Record<Suit, string> = {
+      hearts: '红心',
+      diamonds: '方块',
+      clubs: '梅花',
+      spades: '黑桃'
+    };
     setState(prev => ({
       ...prev,
       currentSuit: suit,
       status: 'playing',
       turn: 'ai',
-      lastAction: `You chose ${suit}. Tina's turn.`,
+      lastAction: `你选择了 ${suitNames[suit]}。轮到 Julia 了。`,
     }));
   }, []);
 
@@ -115,7 +128,7 @@ export const useCrazyEights = () => {
         return {
           ...prev,
           turn: isPlayer ? 'ai' : 'player',
-          lastAction: `Deck empty! ${isPlayer ? 'Your' : "Tina's"} turn skipped.`,
+          lastAction: `牌堆已空！${isPlayer ? '你' : "Julia"} 的回合被跳过。`,
         };
       }
 
@@ -130,7 +143,7 @@ export const useCrazyEights = () => {
         playerHand: isPlayer ? newHand : prev.playerHand,
         aiHand: isPlayer ? prev.aiHand : newHand,
         turn: isPlayer ? 'ai' : 'player',
-        lastAction: `${isPlayer ? 'You' : 'Tina'} drew a card.`,
+        lastAction: `${isPlayer ? '你' : 'Julia'} 摸了一张牌。`,
       };
     });
   }, []);

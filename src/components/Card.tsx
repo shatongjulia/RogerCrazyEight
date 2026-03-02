@@ -40,10 +40,13 @@ export const Card: React.FC<CardProps> = ({ card, isFaceUp, onClick, isPlayable,
           </div>
         </div>
       ) : (
-        <div className="w-full h-full flex items-center justify-center">
-          <div className="w-12 h-16 sm:w-16 sm:h-24 border-2 border-indigo-400/30 rounded-md flex items-center justify-center">
-            <div className="text-indigo-300/50 text-2xl">♠</div>
-          </div>
+        <div className="w-full h-full overflow-hidden rounded-lg">
+          <img 
+            src="https://images.unsplash.com/photo-1545165375-1b744b9ed444?auto=format&fit=crop&w=300&q=80" 
+            alt="Tropical Plant Card Back"
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
         </div>
       )}
     </motion.div>
